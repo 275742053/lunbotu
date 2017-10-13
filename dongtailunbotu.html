@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 500px;
+            height: 336px;
+            margin: 200px auto;
+            position: relative;
+
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ul > li {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+
+        }
+        
+
+        ol {
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            list-style: none;
+        }
+
+        ol > li {
+            width: 20px;
+            height: 20px;
+            background-color: #0000cc;
+            margin-left: 10px;
+            line-height: 20px;
+            text-align: center;
+            color: white;
+            float: left;
+            border-radius: 50%;
+        }
+
+        .active {
+            background-color: #c13131;
+        }
+
+    </style>
+
+</head>
+<body>
+<div>
+    <ul>
+
+    </ul>
+    <ol>
+
+
+    </ol>
+
+</div>
+
+
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.js"></script>
+<script>
+
+    var tupian = [
+        'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1780341725,82021930&fm=27&gp=0.jpg',
+        'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=758105685,2327386986&fm=27&gp=0.jpg',
+        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4152174382,2665495835&fm=27&gp=0.jpg', 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1083229141,1749166277&fm=27&gp=0.jpg']
+    var str = '';
+    var strol = '';
+    for (var i = 0; i < tupian.length; i++) {
+        str += '<li><img src="' + tupian[i] + '"/></li>';
+        if (i == 0) {
+            strol += '<li class="active">' + (i + 1) + '</li>'
+        } else {
+            strol += '<li>' + (i + 1) + '</li>'
+        }
+
+
+    }
+    $('ul').html(str);
+    $('ol').html(strol);
+    var index = 0;
+//    siblings()选择所有同辈元素  hide()隐藏元素
+        $('ul>li').eq(0).siblings().hide();
+    setInterval(function () {
+        index++;
+
+        index = index > tupian.length - 1 ? 0 : index;
+
+        $('ul>li').eq(index).fadeIn().siblings().fadeOut();
+//addClass()添加类名     removeClass（）删除类名
+        $('ol>li').eq(index).addClass('active').siblings().removeClass('active')
+
+    }, 2000)
+
+
+</script>
+</html>
